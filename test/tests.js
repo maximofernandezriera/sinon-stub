@@ -1,36 +1,20 @@
 var chai = require('chai');
 var should = require('chai').should();
 var sinon = require('sinon');
-var Add = require('../maths');
+const IsAlive = require("../function");
 
-describe('Spy Test', function()
+describe('IsAlive Test', function()
 {
-    it ('should log result add', function(){
+    it ('should return true when ping callback returns true', function(){
 
-       var numberOne =1;
-       var numberTwo = 2;
+      // Sinon stub
+       var pinger =sinon.stub();
+       pinger.returns(true);
 
-       var logSpy = sinon.spy();
+       var websiteIsAlive = IsAlive(pinger);
 
-      Add(numberOne,numberTwo, logSpy);
-             
-       // Sinon Spy
-       logSpy.called.should.be.true;
+       websiteIsAlive.should.be.true;
 
     });
-
-   //  it ('should not log result add', function(){
-
-   //    var numberOne =1;
-   //    var numberTwo = 2;
-
-   //    var logSpy = sinon.spy();
-
-   //   Add(numberOne,numberTwo, logSpy);
-            
-   //    // Sinon Spy
-   //    logSpy.called.should.not.be.true;
-
-   // });
 
 });
